@@ -29,12 +29,12 @@ Desarrollar un Catálogo de Libros que ofrezca interacción textual (vía consol
 menos 5 opciones de interacción. Los libros se buscarán a través de una API específica.
 
 ## Pasos para Completar el Desafío
--[x] **Configuración del Ambiente Java**
--[x] **Creación del Proyecto**
--[x] **Consumo de la API**
--[x] **Análisis de la Respuesta JSON**
--[ ] **Inserción y Consulta en la Base de Datos**
--[ ] **Exhibición de Resultados a los Usuarios**
+- [x] **Configuración del Ambiente Java**
+- [x] **Creación del Proyecto**
+- [x] **Consumo de la API**
+- [x] **Análisis de la Respuesta JSON**
+- [ ] **Inserción y Consulta en la Base de Datos**
+- [ ] **Exhibición de Resultados a los Usuarios**
 
 ## API utilizada para el proyecto
 Para nuestro desafío actual, hemos elegido la API [Gutendex](https://gutendex.com/), la cual conserva datos de más de 70 mil libros
