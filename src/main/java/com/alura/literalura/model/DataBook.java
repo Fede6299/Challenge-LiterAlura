@@ -6,7 +6,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record DataBook(
         String title,
-        List<DataAuthor> author,
+        List<DataAuthor> authors,
         List<String> languages,
         Integer download_count
 ) {

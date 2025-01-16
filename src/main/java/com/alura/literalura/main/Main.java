@@ -1,9 +1,12 @@
 package com.alura.literalura.main;
 
-import com.alura.literalura.model.Data;
+import com.alura.literalura.model.*;
 import com.alura.literalura.service.ApiConsumer;
 import com.alura.literalura.service.JsonDataConverter;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +14,7 @@ public class Main {
     private final String URL_BASE = "https://gutendex.com/books/";
     private final JsonDataConverter jsonDataConverter = new JsonDataConverter();
     private final Scanner scanner = new Scanner(System.in);
+    private String bookTitle;
 
     public void program(){
         boolean isRunning = true;
@@ -49,8 +53,25 @@ public class Main {
                        ----------MENU----------""");
     }
 
+    private Data getData() {
+        System.out.println("Ingrese el nombre del libro: ");
+        bookTitle = scanner.nextLine();
+        String url = URL_BASE + "?search=" + URLEncoder.encode(bookTitle, StandardCharsets.UTF_8);
+        var json = apiConsumer.getDataFromUrl(url);
+        return jsonDataConverter.convertJsonToClass(json, Data.class);
+    }
+
     public void searchBookByTitle() {
-        System.out.println("Mostrando los libros...");
+        Optional<DataBook> wantedBook = getData().results().stream()
+                .filter(libro -> libro.title().toUpperCase().contains(bookTitle.toUpperCase()))
+                .findFirst();
+
+        if (wantedBook.isPresent()) {
+            Book book = new Book(wantedBook.get());
+            System.out.println(book);
+        } else {
+            System.out.println("Libro no encontrado");
+        }
     }
 
     public void listRegisteredBooks() {
